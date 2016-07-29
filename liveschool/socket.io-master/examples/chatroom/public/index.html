@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <title>直播 </title>
+  <link rel="stylesheet" href="weui.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link href="./video-js.css" rel="stylesheet" type="text/css">
+  <script src="./video.js"></script>
+
+<style type="text/css">
+body{background:#ebebeb;}
+.chat-tools{position: fixed; bottom: 0;left: 0;right: 0; width: 100%; background:transparent;border-top:1px solid #ddd;padding:10px 10px;}
+.chat-tools .inputMessage{border:none;border-bottom:1px solid #C8C8C8;}
+.messages{padding:10px 15px;}
+.messages li.message{margin:0 0 10px 0;overflow:hidden;display:block;line-height:25px;}
+.message .username,.message .username img{text-align:center; vertical-align:middle; line-height:25px;background:transparent;padding:0;font-size:120%;width:25px;height:25px;border-radius:4px;overflow:hidden;float:left;}
+.message .messageBody{background-color:transparent;border-radius:4px;color: #FFF;padding:0px 10px;float:left;max-width:60%; position:relative;}
+.message.me .messageBody{background-color: transparent;float:left;margin:0 15px 0 0;}
+.message.me .username{float:left;}
+.message .messageBody:after{top:50%;left: -10px;margin-top:-11px;position: absolute;display: block;width: 0;height: 0;border-color:transparent;border-width: 11px;content:' ';border-right-color:#FFF;border-left-width: 0;}
+.message.me .messageBody:after{left:auto;right: -10px;border-right-width:0;border-left-width:11px;}
+.videoBox{background:red;height:100%}
+.vjs-default-skin{width:100%;height:100%;padding-top:75px;padding-bottom:60px;}
+.vjs-big-play-button{left: 50%!important;margin-left:-45px}
+.log{margin:0}
+.page{height:100%;padding:0 60px}
+</style>
+<script>
+function getParam(name){  
+    //构造一个含有目标参数的正则表达式对象  
+    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");  
+    //匹配目标参数  
+    var r = window.location.search.substr(1).match(reg);  
+    //返回参数值  
+    if (r!=null) return unescape(r[2]);  
+    return null;  
+}  
+</script>
+
+</head>
+<body>
+<div style="position:relative;height:100%">
+   <div style="position:absolute;left:0;top:0;width:100%;bottom:60px">
+<video webkit-playsinline id="example-video"  class="video-js vjs-default-skin" style="position:relative;width:100%;height:100%;top:auto;left:auto;padding-bottom:40px" controls>
+<!--
+这里的两个src要使用javascript来生成，依据url参数来决定
+-->
+
+<script>
+var name = getParam("name");
+document.write("<source src='http://112.74.80.186/live/livestream/"+name+".m3u8'  type='application/x-mpegURL'>");
+document.write("<source src='rtmp://112.74.80.186/live/livestream/"+name+"'  >");
+</script>
+
+<!--source
+     src="http://112.74.80.186/live/livestream.m3u8"
+     type="application/x-mpegURL">
+<source
+     src="rtmp://112.74.80.186/live/livestream"-->
+</video>
+<script>
+//var player = videojs('example-video');
+//player.play();
+</script>
+
+  </div>
+   <div style="position:absolute;left:0;top:0">
+  <ul class="pages" style="position:fixed;">
+
+   <li class="chatTitle" style="height:75px;display:none;background:white;line-height:75px;color:#555;">
+     <div style="margin:0;display:none;text-align: center;" id="chatRoomName"></div>
+   </li>
+
+    <div style="position:absolute;display:none;left:50%;top:30%;width:365px;height:220px;margin-left:-182.5px;margin-top:-110px;" id="errorImg"><img align="center"  src="error.png"/></div>
+    <li class="chat page">
+      <div class="chatArea">
+        <ul class="messages" style="overflow-y:auto"></ul>
+      </div>
+<div class="chat-tools"style="padding:10px 10px;background:#fff;border-top:none;" >      
+  <input class="inputMessage" style="line-height:40px;width:70%" placeholder="说两句..."/>
+<button id="sendMsgBtn" class="weui_btn weui_btn_primary" style="font-size:medium;float:right" type="button">发送</button>
+</div>
+
+    </li>
+
+    <li class="login page cell" style="width:100%;height:100%;padding:20px;background:#fbf9fe;box-sizing:border-box">
+      <div class="form" style="max-width:500px;margin:-100px auto 0;max-height:500px;left:50%;transform:translate3d(-50%,-50%,0);padding:20px;">
+        <!--h3 class="title page_title" style="color:#225FBA;margin:20px;">加入 “<span id="titleInner"></span>” 讨论</h3-->
+	<h3 class="title page_title" style="color:#225FBA;margin:20px;">欢迎加入直播群</h3>
+        <input class="usernameInput" style="font-size:20px;padding:0;line-height:2;color:#333;letter-spacing:0;width:100%;border-color:#eee" placeholder="输入昵称" type="text" maxlength="14" />
+	<button class="weui_btn weui_btn_primary enterChatRoomBtn" style="font-size:medium" type="button">边看边聊</button>
+      </div>
+    </li>
+  </ul>
+</div>
+</div>
+  <script src="/jquery-1.10.2.min.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/main.js"></script>
+</body>
+</html>
