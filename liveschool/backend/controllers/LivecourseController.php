@@ -37,7 +37,6 @@ class LivecourseController extends Controller
         $searchModel = new SearchLivecourse();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $arrayStatus = Livecourse::getArrayStatus();
-
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

@@ -4,7 +4,11 @@ namespace frontend\controllers;
 
 use Yii;
 use backend\models\Livecourse;
+use funson86\blog\models\BlogCatalog;
+use funson86\blog\models\BlogCatalogSearch;
 use backend\models\SearchLivecourse;
+use yii\data\ActiveDataProvider;
+
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -38,9 +42,25 @@ class VideoController extends Controller
         $searchModel = new SearchLivecourse();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+	$query = Livecourse::find();
+
+	$provider = new ActiveDataProvider([
+	    'query' => $query,
+	    'pagination' => [
+	        'pageSize' => 10,
+	    ],
+	    'sort' => [
+	        'defaultOrder' => [
+	            'created_at' => SORT_DESC,
+	        ]
+	    ],
+	]);
+
+	// 返回一个Post实例的数组
+	$courses = $provider->getModels();
+	$formated = array_chunk($courses,3);
         return $this->render('list', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'data' => $formated,
         ]);
     }
 
@@ -51,8 +71,18 @@ class VideoController extends Controller
      */
     public function actionView($id)
     {
+	$query = BlogCatalog::find();
+	$provider = new ActiveDataProvider([
+	    'query' => $query,
+	    'pagination' => [
+	        'pageSize' => 20,
+	    ],
+	]);
+
+	$catas = $provider->getModels();
         return $this->render('detail', [
             'model' => $this->findModel($id),
+            'catas' => array_chunk($catas,4),
         ]);
     }
 
