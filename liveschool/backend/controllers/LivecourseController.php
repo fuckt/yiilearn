@@ -71,8 +71,15 @@ class LivecourseController extends Controller
         $model = new Livecourse();
         $model->loadDefaultValues();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idlivecourse]);
+        if ($model->load(Yii::$app->request->post())) {
+		if($model->created_at){
+			//有提交过来
+			$model['stime'] =  strtotime($model['stime']);
+			$model['etime'] =  strtotime($model['etime']);
+			if($model->save()){
+            			return $this->redirect(['view', 'id' => $model->idlivecourse]);
+			}
+		}
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -91,7 +98,6 @@ class LivecourseController extends Controller
         //if(!Yii::$app->user->can('updateYourAuth')) exit('No Auth');
 
         $model = $this->findModel($id);
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->idlivecourse]);
         } else {
