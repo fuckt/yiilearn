@@ -18,6 +18,7 @@
         "yiisoft/yii2-swiftmailer": "*",
         "funson86/yii2-gii": "dev-master",
         "funson86/yii2-setting": "*",
+	"kartik-v/yii2-widget-datetimepicker": "*",
         "funson86/yii2-blog": "dev-master"
     },
     "require-dev": {

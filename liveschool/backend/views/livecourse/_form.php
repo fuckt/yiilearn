@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\datetime\DateTimePicker;
+
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Livecourse */
@@ -12,9 +14,28 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'stime')->textInput() ?>
+<?php
+echo '<label class="control-label">课程开始时间</label>';
+echo DateTimePicker::widget([
+    'name' => 'Livecourse[stime]',
+    'type' => DateTimePicker::TYPE_COMPONENT_APPEND,
+    'pluginOptions' => [
+        'autoclose'=>true,
+        'format' => 'yy-M-dd HH:ii P'
+    ]
+]);
 
-    <?= $form->field($model, 'etime')->textInput() ?>
+echo '<label class="control-label">课程结束时间</label>';
+echo DateTimePicker::widget([
+    'name' => 'Livecourse[etime]',
+    'type' => DateTimePicker::TYPE_COMPONENT_APPEND,
+    'pluginOptions' => [
+        'autoclose'=>true,
+        'format' => 'yy-M-dd HH:ii P'
+    ]
+]);
+?>
+
 
     <?= $form->field($model, 'label')->textInput(['maxlength' => 45]) ?>
 
