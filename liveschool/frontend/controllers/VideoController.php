@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use Yii;
 use backend\models\Livecourse;
 use funson86\blog\models\BlogCatalog;
+use funson86\blog\models\BlogPost;
 use funson86\blog\models\BlogCatalogSearch;
 use backend\models\SearchLivecourse;
 use yii\data\ActiveDataProvider;
@@ -71,6 +72,16 @@ class VideoController extends Controller
      */
     public function actionView($id)
     {
+	//get relative blog
+	$PostQuery = BlogPost::find()->where(['course_id'=>$id]);
+	$PostProvider = new ActiveDataProvider([
+	    'query' => $PostQuery,
+	    'pagination' => [
+	        'pageSize' => 20,
+	    ],
+	]);
+	$posts = $PostProvider->getModels();
+	//get all catalog
 	$query = BlogCatalog::find();
 	$provider = new ActiveDataProvider([
 	    'query' => $query,
@@ -83,6 +94,7 @@ class VideoController extends Controller
         return $this->render('detail', [
             'model' => $this->findModel($id),
             'catas' => array_chunk($catas,4),
+            'posts' => $posts,
         ]);
     }
 
