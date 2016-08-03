@@ -13,7 +13,7 @@
 
                 <!-- Author -->
                 <p class="lead">
-                    by <a href="#">作者</a>
+                    授课教师： <a href="#">作者</a>
                 </p>
 
                 <hr>
@@ -23,20 +23,14 @@
 
                 <hr>
 
-                <!-- Preview Image -->
+                <!-- 视频内容 -->
                 <img class="img-responsive" src="http://placehold.it/900x300" alt="视频内容">
 
                 <hr>
 
                 <!-- Post Content -->
-                <p class="lead">概要介绍</p>
-                <p>详情介绍</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, doloribus, dolorem iusto blanditiis unde eius illum consequuntur neque dicta incidunt ullam ea hic porro optio ratione repellat perspiciatis. Enim, iure!</p>
-                <p>详情介绍</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>
-                <p>详情介绍</p>
-
-                <hr>
+                <p class="lead"><?php echo $model->label;?></p>
+                <p><?php echo $model->desc;?></p>
 
 
             </div>
