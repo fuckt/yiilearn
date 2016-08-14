@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'desc')->textInput(['maxlength' => 45]) ?>
 
-<?= $form->field($model, 'roomid')->dropDownList($rooms) ?>
+<?= $form->field($model, 'roomid')->dropDownList(\backend\models\Liveclassroom::getRooms()) ?>
 
 
     <?= $form->field($model, 'user_id')->hiddenInput(['value'=>Yii::$app->user->id])->label(false); ?>

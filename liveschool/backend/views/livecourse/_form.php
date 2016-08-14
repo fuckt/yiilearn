@@ -39,9 +39,10 @@ echo DateTimePicker::widget([
 
     <?= $form->field($model, 'label')->textInput(['maxlength' => 45]) ?>
 
-    <?= $form->field($model, 'user_id')->textInput() ?>
+    <?= $form->field($model, 'user_id')->hiddenInput(['value'=>Yii::$app->user->id])->label(false); ?>
 
-    <?= $form->field($model, 'roomid')->textInput() ?>
+<?= $form->field($model, 'roomid')->dropDownList(\backend\models\Liveclassroom::getRooms()) ?>
+
 
     <?= $form->field($model, 'created_at')->hiddenInput(['value'=>$model->isNewRecord?time():$model->created_at])->label(false); ?>
     <?= $form->field($model, 'updated_at')->hiddenInput(['value'=>time()])->label(false); ?>

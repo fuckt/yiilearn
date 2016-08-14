@@ -4,6 +4,7 @@ namespace backend\models;
 
 use Yii;
 use yii\behaviors\BlameableBehavior;
+use yii\data\ActiveDataProvider;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
 
@@ -180,6 +181,30 @@ class Liveclassroom extends \yii\db\ActiveRecord
         }
         return $this->_updateUserName;
     }
+	public static function getRooms(){
+
+	$query = self::find();
+
+        $provider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => 20,
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'created_at' => SORT_DESC,
+                ]
+            ],
+        ]);
+
+        // 返回一个Post实例的数组
+        $rooms = $provider->getModels();
+        $arr = array();
+        foreach($rooms as $room){
+                $arr[$room['idliveclassroom']]=$room['label'];
+        }
+	return $arr;
+	}
 
 
 }
