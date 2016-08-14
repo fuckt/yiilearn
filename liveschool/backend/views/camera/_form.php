@@ -16,17 +16,24 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'desc')->textInput(['maxlength' => 45]) ?>
 
-    <?= $form->field($model, 'roomid')->textInput() ?>
+<?= $form->field($model, 'roomid')->dropDownList($rooms) ?>
 
-    <?= $form->field($model, 'user_id')->textInput() ?>
 
-    <?= $form->field($model, 'created_at')->textInput() ?>
+    <?= $form->field($model, 'user_id')->hiddenInput(['value'=>Yii::$app->user->id])->label(false); ?>
 
-    <?= $form->field($model, 'updated_at')->textInput() ?>
+
+
+  <?= $form->field($model, 'updated_at')->hiddenInput(['value'=>time()])->label(false); ?>
+        <?php
+        if($model->isNewRecord){
+                echo $form->field($model, 'created_at')->hiddenInput(['value'=>time()])->label(false);
+        }
+        ?>
+
 
 <?= $form->field($model, 'status')->dropDownList(\backend\models\Camera::getArrayStatus()) ?>
 
-    <?= $form->field($model, 'sort_order')->textInput() ?>
+  <?= $form->field($model, 'sort_order')->hiddenInput(['value'=>time()])->label(false); ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

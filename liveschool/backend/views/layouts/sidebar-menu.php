@@ -14,16 +14,16 @@ echo Menu::widget(
                 'active' => Yii::$app->request->url === Yii::$app->homeUrl
             ],
             [
-                'label' => Yii::t('app', 'LiveCamera'),
-                'url' => ['/camera'],
-                'icon' => 'fa fa-spinner',
-                'active' => Yii::$app->request->url === "/camera" 
-            ],
-            [
                 'label' => Yii::t('app', 'LiveClassroom'),
                 'url' => ['/liveclassroom'],
                 'icon' => 'fa fa-spinner',
                 'active' => Yii::$app->request->url === "/liveclassroom" 
+            ],
+            [
+                'label' => Yii::t('app', 'LiveCamera'),
+                'url' => ['/camera'],
+                'icon' => 'fa fa-spinner',
+                'active' => Yii::$app->request->url === "/camera" 
             ],
             [
                 'label' => Yii::t('app', 'LiveCourseAdmin'),

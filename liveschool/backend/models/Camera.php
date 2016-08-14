@@ -48,14 +48,13 @@ class Camera extends \yii\db\ActiveRecord
         return [
             [
                 'class' => TimestampBehavior::className(),
-                'createdAtAttribute' => 'create_time',
-                'updatedAtAttribute' => 'update_time',
-                'value' => new Expression('NOW()'),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
             ],
             [
                 'class' => BlameableBehavior::className(),
-                'createdByAttribute' => 'create_user_id',
-                'updatedByAttribute' => 'update_user_id',
+                'createdByAttribute' => 'user_id',
+                'updatedByAttribute' => 'user_id',
             ],
         ];
     }

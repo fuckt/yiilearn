@@ -4,6 +4,9 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\Camera;
+use backend\models\Liveclassroom;
+use yii\data\ActiveDataProvider;
+
 use backend\models\SearchCamera;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -67,7 +70,27 @@ class CameraController extends Controller
     public function actionCreate()
     {
         //if(!Yii::$app->user->can('createYourAuth')) exit('No Auth');
+	//教室列表
+	$query = Liveclassroom::find();
 
+        $provider = new ActiveDataProvider([
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => 20,
+            ],
+            'sort' => [
+                'defaultOrder' => [
+                    'created_at' => SORT_DESC,
+                ]
+            ],
+        ]);
+
+        // 返回一个Post实例的数组
+        $rooms = $provider->getModels();
+	$arr = array();
+	foreach($rooms as $room){
+		$arr[$room['idliveclassroom']]=$room['label'];	
+	}
         $model = new Camera();
         $model->loadDefaultValues();
 
@@ -76,6 +99,7 @@ class CameraController extends Controller
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'rooms' => $arr,
             ]);
         }
     }
