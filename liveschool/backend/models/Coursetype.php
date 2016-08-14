@@ -43,14 +43,8 @@ class Coursetype extends \yii\db\ActiveRecord
         return [
             [
                 'class' => TimestampBehavior::className(),
-                'createdAtAttribute' => 'create_time',
-                'updatedAtAttribute' => 'update_time',
-                'value' => new Expression('NOW()'),
-            ],
-            [
-                'class' => BlameableBehavior::className(),
-                'createdByAttribute' => 'create_user_id',
-                'updatedByAttribute' => 'update_user_id',
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
             ],
         ];
     }
@@ -72,12 +66,12 @@ class Coursetype extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'idcoursetype' => 'Idcoursetype',
-            'label' => 'Label',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'status' => 'Status',
-            'sort_order' => 'Sort Order',
+            'idcoursetype' => '编号',
+            'label' => '名称',
+            'created_at' => '创建时间',
+            'updated_at' => '修改时间',
+            'status' => '状态',
+            'sort_order' => '排序',
         ];
     }
 
