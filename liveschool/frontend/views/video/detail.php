@@ -1,8 +1,6 @@
-<?php
-
-?>
+<link href="//vjs.zencdn.net/5.8/video-js.min.css" rel="stylesheet">
+<script src="//vjs.zencdn.net/5.8/video.min.js"></script>
         <div class="row">
-
             <!-- Blog Post Content Column -->
             <div class="col-lg-8">
 
@@ -23,8 +21,16 @@
 
                 <hr>
 
-                <!-- 视频内容 -->
-                <img class="img-responsive" src="http://placehold.it/900x300" alt="视频内容">
+                <!-- 视频内容 在这里的都应该是录播内容 直接内容应该都在另外一个环节-->
+		<video id="really-cool-video" class="video-js vjs-default-skin" controls
+			 preload="auto" width="750" height="420" 
+			 data-setup='{}'>
+			<source   src="http://112.74.80.186/a.mp4" >
+		  <p class="vjs-no-js">
+		   观看本视频需要支持Javascript,请查检浏览器设置。 
+		     <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+		  </p>
+		</video>
 
                 <hr>
 

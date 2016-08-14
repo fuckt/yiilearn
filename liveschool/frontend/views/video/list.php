@@ -14,7 +14,7 @@ foreach($data as $line){
 echo <<<EOB
             <div class="col-md-4 portfolio-item">
                 <a href="/video/view/{$item['idlivecourse']}">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
+                    <img class="img-responsive" src="{$item['img']}" alt="">
                 </a>
                 <h3>
                     <a href="/video/view/{$item['idlivecourse']}">{$item['label']}</a>
