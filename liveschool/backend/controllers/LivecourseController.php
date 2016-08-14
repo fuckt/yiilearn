@@ -25,7 +25,14 @@ class LivecourseController extends Controller
             ],
         ];
     }
-
+	public function actionAddcoursestuff(){
+        	//if(!Yii::$app->user->can('readYourAuth')) exit('No Auth');
+		$id = Yii::$app->request->queryParams["id"];
+		if(empty($id)){
+			exit("need params");
+		}
+		return $this->redirect(['/coursestuff/create', 'cid' => Yii::$app->request->queryParams['id']]);
+	}
     /**
      * Lists all Livecourse models.
      * @return mixed

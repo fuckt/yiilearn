@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'stime:datetime',
             'etime:datetime',
             'label',
-            'user_id',
+            //'user_id',
             // 'roomid',
             // 'created_at',
             // 'updated_at',
@@ -57,7 +57,19 @@ $this->params['breadcrumbs'][] = $this->title;
 ],
             // 'sort_order',
 
-            ['class' => 'yii\grid\ActionColumn'],
+[
+'class' => 'yii\grid\ActionColumn',
+'header' => '操作',
+'template' => '{view} {update} {delete} {addcoursestuff}',
+'buttons' => [
+'addcoursestuff' => function ($url, $model, $key) {
+		
+                    return Html::a('<span class="glyphicon glyphicon-user"></span>', $url, ['title' => '添加教材'] ); 
+                 },
+],
+ 'headerOptions' => ['width' => '80'],
+],
+
         ],
     ]); ?>
 
