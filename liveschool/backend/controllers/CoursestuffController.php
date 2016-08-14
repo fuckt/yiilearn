@@ -74,8 +74,13 @@ class CoursestuffController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->idcoursestuff]);
         } else {
+		if(empty($_GET['cid'])){
+            		return $this->redirect(['index']);
+		}
+		$cid = $_GET['cid'];
             return $this->render('create', [
                 'model' => $model,
+                'cid' => $cid,
             ]);
         }
     }
