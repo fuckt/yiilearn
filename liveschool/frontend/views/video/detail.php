@@ -36,7 +36,8 @@ function getParam(name){
     return null;
 }
 var name = getParam("name");
-var host='localhost'
+//var host='localhost'
+var host='112.74.80.186:19350'
 document.write("<source src='http://"+host+"/live/"+name+".m3u8'  type='application/x-mpegURL'>");
 document.write("<source src='rtmp://"+host+"/live/"+name+"'  >");
 </script>
