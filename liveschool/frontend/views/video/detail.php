@@ -25,7 +25,21 @@
 		<video id="really-cool-video" class="video-js vjs-default-skin" controls
 			 preload="auto" width="750" height="420" 
 			 data-setup='{}'>
-			<source   src="http://112.74.80.186/a.mp4" >
+<script>
+function getParam(name){
+    //构造一个含有目标参数的正则表达式对象
+    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+    //匹配目标参数
+    var r = window.location.search.substr(1).match(reg);
+    //返回参数值
+    if (r!=null) return unescape(r[2]);
+    return null;
+}
+var name = getParam("name");
+var host='localhost'
+document.write("<source src='http://"+host+"/live/"+name+".m3u8'  type='application/x-mpegURL'>");
+document.write("<source src='rtmp://"+host+"/live/"+name+"'  >");
+</script>
 		  <p class="vjs-no-js">
 		   观看本视频需要支持Javascript,请查检浏览器设置。 
 		     <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
