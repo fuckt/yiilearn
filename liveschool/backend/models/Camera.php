@@ -176,5 +176,9 @@ class Camera extends \yii\db\ActiveRecord
         return $this->_updateUserName;
     }
 
+    public function getRoomName()
+    {
+	return Liveclassroom::findOne($this->roomid)->label." [ ".$this->roomid.' ]';
+    }
 
 }

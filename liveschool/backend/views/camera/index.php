@@ -25,11 +25,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'idcamera',
+ //           'idcamera',
             'label',
             'desc',
-            'roomid',
-            'user_id',
+		[
+    'attribute' => 'roomid',
+    'format' => 'html',
+    'value' => function ($model) {
+			return $model->getRoomName();
+		},
+		],
+            //'user_id',
             // 'created_at',
             // 'updated_at',
 		[

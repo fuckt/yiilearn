@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use Yii;
 use backend\models\Camera;
+use backend\models\Liveclassroom;
 use yii\data\ActiveDataProvider;
 
 use backend\models\SearchCamera;
@@ -35,6 +36,7 @@ class CameraController extends Controller
     public function actionIndex()
     {
         //if(!Yii::$app->user->can('readYourAuth')) exit('No Auth');
+	$rooms = Liveclassroom::getRooms();
 
         $searchModel = new SearchCamera();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -44,6 +46,7 @@ class CameraController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
             'arrayStatus' => $arrayStatus,
+            'rooms' => $rooms,
         ]);
     }
 

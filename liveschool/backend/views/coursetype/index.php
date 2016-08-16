@@ -25,11 +25,31 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'idcoursetype',
+        //    'idcoursetype',
             'label',
-            'created_at',
-            'updated_at',
+            'created_at:datetime',
+            'updated_at:datetime',
+[
+    'attribute' => 'status',
+    'format' => 'html',
+    'value' => function ($model) {
+            if ($model->status === $model::STATUS_ACTIVE) {
+                $class = 'label-success';
+            } elseif ($model->status === $model::STATUS_INACTIVE) {
+                $class = 'label-warning';
+            } else {
+                $class = 'label-danger';
+            }
+
+            return '<span class="label ' . $class . '">' . $model->statusLabel . '</span>';
+        },
+    'filter' => Html::activeDropDownList(
+            $searchModel,
             'status',
+            $arrayStatus,
+            ['class' => 'form-control', 'prompt' => Yii::t('app', 'PROMPT_STATUS')]
+        )
+],
             // 'sort_order',
 
             ['class' => 'yii\grid\ActionColumn'],
