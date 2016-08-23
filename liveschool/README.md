@@ -57,3 +57,7 @@ Related:
 - [Yii2-Blog](https://github.com/funson86/yii2-blog) : A Blog extension for Yii2
 - [Yii2-Cms](https://github.com/funson86/yii2-cms) : A Cms extension for Yii2
 
+Record Stuff:
+-------
+1,首先在服务端要有一个crontab，扫描数据库里的课程开始与结束时间，然后启动ffmpeg进行课程记录
+避免使用全量视频记录之后，还要进行人工切分的工作。
