@@ -37,9 +37,9 @@ function getParam(name){
 }
 var name =  <?php echo $model->idcamera;?>
 //var host='localhost' 服务端需要打开hls
-var host='112.74.80.186:19350'
+var host='112.74.80.186'
 document.write("<source src='http://"+host+"/live/"+name+".m3u8'  type='application/x-mpegURL'>");
-document.write("<source src='rtmp://"+host+"/live/"+name+"'  >");
+document.write("<source src='rtmp://"+host+":19350/live/"+name+"'  >");
 </script>
 		  <p class="vjs-no-js">
 		   观看本视频需要支持Javascript,请查检浏览器设置。 
