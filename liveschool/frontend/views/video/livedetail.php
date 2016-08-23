@@ -35,7 +35,7 @@ function getParam(name){
     if (r!=null) return unescape(r[2]);
     return null;
 }
-var name = getParam("name");
+var name =  <?php echo $model->idcamera;?>
 //var host='localhost' 服务端需要打开hls
 var host='112.74.80.186:19350'
 document.write("<source src='http://"+host+"/live/"+name+".m3u8'  type='application/x-mpegURL'>");
