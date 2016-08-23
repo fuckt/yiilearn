@@ -4,11 +4,14 @@ namespace frontend\controllers;
 
 use Yii;
 use backend\models\Livecourse;
+use backend\models\Camera;
 use funson86\blog\models\BlogCatalog;
 use funson86\blog\models\BlogPost;
 use funson86\blog\models\BlogCatalogSearch;
 use backend\models\SearchLivecourse;
 use yii\data\ActiveDataProvider;
+use backend\models\Liveclassroom;
+
 
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -97,6 +100,21 @@ class VideoController extends Controller
             'posts' => $posts,
         ]);
     }
+
+	public function actionLive($id){
+		if (($model = Camera::findOne($id)) !== null) {
+			if (($roomModel = Liveclassroom::findOne($model->roomid)) !== null) {
+			}else{
+		            throw new NotFoundHttpException('The requested page does not exist.');
+			}
+			return $this->render('livedetail', [
+	            		'model' => $model,
+	            		'room' => $roomModel,
+		        ]);	
+	        } else {
+	            throw new NotFoundHttpException('The requested page does not exist.');
+        	}
+	}
 
 
     /**
